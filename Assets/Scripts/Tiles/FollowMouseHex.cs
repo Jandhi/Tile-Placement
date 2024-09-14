@@ -6,7 +6,8 @@ using UnityEngine;
 public class FollowMouseHex : MonoBehaviour
 {
     private Tile _tile;
-    private Camera _camera;
+    private Camera _camera; 
+    public float Scaling;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,7 @@ public class FollowMouseHex : MonoBehaviour
         mousePos.z = _camera.nearClipPlane;
         var worldPosition = _camera.ScreenToWorldPoint(mousePos);
         var grid = TileManager.Instance.Grid;
-        var gridPos = grid.WorldToCell(worldPosition);
-        
+        var gridPos = grid.WorldToCell(worldPosition * Scaling);
         _tile.SetPosition(gridPos);
     }
 }
